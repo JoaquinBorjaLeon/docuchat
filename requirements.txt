@@ -6,4 +6,5 @@ requests
 fastapi
 uvicorn
 anthropic
+google-genai
 python-dotenv
