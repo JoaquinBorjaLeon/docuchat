@@ -9,11 +9,13 @@ final text answer (or we hit MAX_ROUNDS).
 
 import json
 import os
+import time
 from datetime import datetime
 
 import requests
 from dotenv import load_dotenv
 
+from src.observability import log_query
 from src.rag import retrieve
 
 load_dotenv()
@@ -63,9 +65,20 @@ TOOLS = {
 }
 
 
+_call_tracker: dict = {"tools": [], "num_chunks": 0}
+
+
+def _reset_tracker():
+    _call_tracker["tools"] = []
+    _call_tracker["num_chunks"] = 0
+
+
 def execute_tool(name: str, args: dict) -> str:
+    _call_tracker["tools"].append(name)
+
     if name == "buscar_documentos":
         chunks = retrieve(args["query"])
+        _call_tracker["num_chunks"] += len(chunks)
         results = [
             {"source": c["source"], "content": c["content"], "rrf_score": round(c["rrf_score"], 4)}
             for c in chunks
@@ -260,7 +273,22 @@ def agent_chat(question: str) -> str:
             f"Unknown LLM_PROVIDER={LLM_PROVIDER!r}. "
             f"Choose from: {', '.join(PROVIDERS)}"
         )
-    return loop_fn(question)
+
+    _reset_tracker()
+    start = time.perf_counter()
+    answer = loop_fn(question)
+    latency_ms = int((time.perf_counter() - start) * 1000)
+
+    log_query(
+        provider=LLM_PROVIDER,
+        question=question,
+        tools_used=_call_tracker["tools"],
+        num_chunks=_call_tracker["num_chunks"],
+        latency_ms=latency_ms,
+        answer=answer,
+    )
+
+    return answer
 
 
 # ── CLI helpers ─────────────────────────────────────────────────────

@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from src.rag import retrieve, generate
@@ -6,6 +7,13 @@ from src.rag import retrieve, generate
 app = FastAPI(
     title="DocuChat",
     description="RAG conversational assistant over your PDF documents.",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 

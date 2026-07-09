@@ -1,0 +1,62 @@
+[
+  {
+    "question": "¿Qué es el PMBOK y para qué sirve?",
+    "expected_sources": ["Tema 0"]
+  },
+  {
+    "question": "¿Cuáles son las áreas de conocimiento de la dirección de proyectos?",
+    "expected_sources": ["Tema 0"]
+  },
+  {
+    "question": "¿Qué es el acta de constitución del proyecto?",
+    "expected_sources": ["Tema 1"]
+  },
+  {
+    "question": "¿Cómo se define el alcance del proyecto?",
+    "expected_sources": ["Tema 2"]
+  },
+  {
+    "question": "¿Qué es la Estructura de Desglose del Trabajo (EDT)?",
+    "expected_sources": ["Tema 2"]
+  },
+  {
+    "question": "¿Cómo se estiman los costes de un proyecto?",
+    "expected_sources": ["Tema 3"]
+  },
+  {
+    "question": "¿Qué es la línea base de costes?",
+    "expected_sources": ["Tema 3"]
+  },
+  {
+    "question": "¿Cómo se gestionan los riesgos en un proyecto?",
+    "expected_sources": ["Tema 4"]
+  },
+  {
+    "question": "¿Qué es el análisis cualitativo de riesgos?",
+    "expected_sources": ["Tema 4"]
+  },
+  {
+    "question": "¿Qué es la gestión de la calidad del proyecto?",
+    "expected_sources": ["Tema 5"]
+  },
+  {
+    "question": "¿Cómo se planifican los recursos humanos del proyecto?",
+    "expected_sources": ["Tema 6"]
+  },
+  {
+    "question": "¿Qué es el plan de comunicaciones del proyecto?",
+    "expected_sources": ["Tema 7"]
+  },
+  {
+    "question": "¿Cómo se gestiona el cronograma del proyecto?",
+    "expected_sources": ["Tema 8"]
+  },
+  {
+    "question": "¿Qué es el método del camino crítico?",
+    "expected_sources": ["Tema 8"]
+  },
+  {
+    "question": "¿Cómo se gestionan las adquisiciones del proyecto?",
+    "expected_sources": ["Tema 9"]
+  }
+]
