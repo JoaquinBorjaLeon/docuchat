@@ -35,5 +35,17 @@ def init_db(conn):
             CREATE INDEX IF NOT EXISTS idx_chunks_fts
             ON chunks USING GIN (to_tsvector('spanish', content))
         """)
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS query_logs (
+                id                  SERIAL PRIMARY KEY,
+                timestamp           TIMESTAMPTZ NOT NULL DEFAULT now(),
+                provider            TEXT NOT NULL,
+                question            TEXT NOT NULL,
+                tools_used          TEXT[] NOT NULL DEFAULT '{}',
+                num_chunks_retrieved INTEGER NOT NULL DEFAULT 0,
+                latency_ms          INTEGER NOT NULL,
+                answer              TEXT
+            )
+        """)
     conn.commit()
     register_vector(conn)
