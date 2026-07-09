@@ -1,0 +1,8 @@
+pypdf
+psycopg2-binary
+pgvector
+requests
+fastapi
+uvicorn
+anthropic
+python-dotenv
