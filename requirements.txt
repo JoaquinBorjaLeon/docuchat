@@ -1,6 +1,7 @@
 pypdf
 psycopg2-binary
 pgvector
+numpy
 requests
 fastapi
 uvicorn
